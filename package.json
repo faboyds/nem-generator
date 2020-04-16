@@ -1,14 +1,20 @@
 {
-  "name": "index",
+  "name": "nem-generator",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Node.js project generator using Express and connected to MongoBD.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "node",
+    "express",
+    "mongo",
+    "mongodb",
+    "mongoose"
+  ],
+  "author": "Fábio Lourenço <faboyds@gmail.com> (https://faboyds.github.io)",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^4.0.0",
     "inquirer": "^7.1.0"
@@ -18,5 +24,13 @@
   },
   "devDependencies": {
     "eslint": "^6.8.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faboyds/nem-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/faboyds/nem-generator/issues"
+  },
+  "homepage": "https://github.com/faboyds/nem-generator#readme"
 }
