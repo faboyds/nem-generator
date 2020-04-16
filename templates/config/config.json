@@ -1,0 +1,20 @@
+{
+    "development": {
+        "config_id": "development",
+        "app_name": "project-name",
+        "node_port": 3000,
+        "database": "mongodb://127.0.0.1/project-name-dev",
+        "secret": "supersecret",
+        "tokenLife": 2678400
+    },
+    "testing": {
+        "config_id": "testing",
+        "node_port": 3000,
+        "database": "mongodb://127.0.0.1/project-name-test"
+    },
+    "production": {
+        "config_id": "production",
+        "node_port": 3001,
+        "database": "mongodb://127.0.0.1/project-name-prod"
+    }
+}
