@@ -1,6 +1,6 @@
 {
   "name": "nem-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Node.js project generator using Express and connected to MongoBD.",
   "main": "index.js",
   "scripts": {

@@ -25,7 +25,7 @@ Simply run
  
     nem-gen
       
-and you will be prompt with questions, allowing you to configure your project (for now, only project name is configurable during project creation).
+and you will be prompted with questions, allowing you to configure your project (for now, the project name is the only configurable parameter during project creation).
 
 ### Project Structure
 
@@ -36,21 +36,21 @@ The generated project has the following files:
     .
     ├── app.js
     ├── bin
-    │   └── www
+    │   └── www
     ├── config
-    │   ├── config.js
-    │   ├── config.json
-    │   ├── mongod.conf
-    │   └── roles.js
+    │   ├── config.js
+    │   ├── config.json
+    │   ├── mongod.conf
+    │   └── roles.js
     ├── controllers
-    │   └── userController.js
+    │   └── userController.js
     ├── models
-    │   └── user.js
+    │   └── user.js
     ├── package.json
     ├── routes
-    │   ├── authorizeRole.js
-    │   ├── usersRoute.js
-    │   └── verifyToken.js
+    │   ├── authorizeRole.js
+    │   ├── usersRoute.js
+    │   └── verifyToken.js
     └── services
         └── userService.js
 ```
@@ -122,12 +122,13 @@ authorize([roles.USER, roles.ADMIN])
 
 If you don't want any role restriction, just remove the `authorize` middleware.
 
-You can also remove the token restriction, remove the `verifyToken` middlewarre.
+You can also remove the token restriction, remove the `verifyToken` middleware.
 
 ## TODO
 
 - [ ] Allow selection of database type (add support to SQL using Sequelize)
 - [ ] Allow roles configuration during project creation
+- [ ] Add optional client app template (for React, Angular or Vue)
 
 Feel free to create issues with more ideas!
 
