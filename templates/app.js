@@ -3,21 +3,23 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var cors = require('cors');
-require('./config/config');
+var debug = require('debug')('backend:server');
 
+require('./config/config');
 var usersRouter = require('./routes/usersRoute');
 
 
 var app = express();
+mongoose.set('useCreateIndex', true);
 
 //Set up default mongoose connection
 var mongoDB = global.gConfig.database;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
-        console.log("Connection with MongoDB successful!");
+        debug("Connection with MongoDB successful! :D ");
     })
     .catch(error => {
-        console.log(error);
+        debug("Wasn't able to connect to MongoDB. See error: " + error);
     });
 
 //Get the default connection
