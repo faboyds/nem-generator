@@ -1,45 +1,43 @@
-const User = require('../models/user');
+let userRepository = require('../repositories/userRepository');
+let roles = require('../config/roles');
 
-exports.getUserByEmail = function(email) {
-    return User.findOne({
-        email: email,
-    });
+exports.getUserByEmail = async function(email) {
+    if (email === '') {
+        throw new Error('Email can\'t be blank');
+    }
+    return await userRepository.getUserByEmail(email);
 };
 
-exports.getUserById = function(id) {
-    return User.findById(id);
+exports.getAllUsers = async function() {
+    return await userRepository.getAllUsers();
 };
 
-exports.deleteUser = function(id) {
-    return User.deleteById(id);
+exports.getUserById = async function(id) {
+    if (id === '') {
+        throw new Error('id can\'t be blank');
+    }
+    return await userRepository.getUserById(id);
 };
 
-exports.updateUser = function(userId, reqBody) {
-    return User.update({
-        _id: userId
-    }, reqBody,
-    {
-        new: true
-    });
+exports.createUser = async function(email, username, hashedPassword, role) {
+    if (email === '') {
+        throw new Error('Email can\'t be blank');
+    }
+    if (username === '') {
+        throw new Error('Username can\'t be blank');
+    }
+    if (hashedPassword === '') {
+        throw new Error('Password can\'t be blank');
+    }
+    if (role === '') {
+        role = roles.USER;
+    }
+    return await userRepository.createUser(email, username, hashedPassword, role);
 };
 
-exports.updateRole = function(userId, role) {
-    return User.update({
-        _id: userId
-    },{
-        role: role
-    });
-};
-
-exports.createUser = function(email, username, hashedPassword, role) {
-    return User.create({
-        email: email,
-        username: username,
-        password: hashedPassword,
-        role: role
-    });
-};
-
-exports.getAllUsers = function() {
-    return User.find({});
+exports.deleteUser = async function(user_id) {
+    if (user_id === '') {
+        throw new Error('User id can\'t be blank');
+    }
+    return await userRepository.deleteUser(user_id);
 };

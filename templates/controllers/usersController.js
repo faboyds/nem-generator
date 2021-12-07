@@ -2,7 +2,7 @@ let express = require('express');
 let router = express.Router();
 let jwt = require('jsonwebtoken');
 let bcrypt = require('bcryptjs');
-let controller = require('../controllers/userController');
+let service = require('../services/userService');
 let verifyToken = require('./verifyToken');
 let authorize = require('./authorizeRole');
 let roles = require('../config/roles');
@@ -10,7 +10,7 @@ let roles = require('../config/roles');
 
 router.get('/', verifyToken, authorize(roles.ADMIN), async function (req, res) {
     try {
-        let result = await controller.getAllUsers();
+        let result = await service.getAllUsers();
 
         if (!result) return res.status(500).send("No users found.");
 
@@ -22,10 +22,10 @@ router.get('/', verifyToken, authorize(roles.ADMIN), async function (req, res) {
 
 router.delete('/', verifyToken, authorize(roles.ADMIN), async function (req, res) {
     try {
-        let user = await controller.getUserById(req.body.id);
+        let user = await service.getUserById(req.body.id);
         if (!user) return res.status(404).send("No users found.");
 
-        let result = await controller.deleteUser(req.body.id);
+        let result = await service.deleteUser(req.body.id);
         if (!result) return res.status(500).send("There was a problem deleting the user");
 
         return res.status(200).send(result);
@@ -36,7 +36,7 @@ router.delete('/', verifyToken, authorize(roles.ADMIN), async function (req, res
 
 router.get('/:userId', verifyToken, authorize([roles.ADMIN, roles.USER]), async function (req, res) {
     try {
-        let result = await controller.getUserById(req.params.userId);
+        let result = await service.getUserById(req.params.userId);
 
         if (!result) return res.status(500).send("No user found.");
 
@@ -50,7 +50,7 @@ router.post('/register', async function (req, res) {
     try {
 
         let hashedPassword = bcrypt.hashSync(req.body.password, 8);
-        let result = await controller.createUser(req.body.email, req.body.username, hashedPassword, roles.USER);
+        let result = await service.createUser(req.body.email, req.body.username, hashedPassword, roles.USER);
 
         if (!result) return res.status(500).send("There was a problem registering the user.");
 
@@ -71,7 +71,7 @@ router.post('/register', async function (req, res) {
 
 router.post('/login', async function (req, res) {
     try {
-        const user = await controller.getUserByEmail(req.body.email);
+        const user = await service.getUserByEmail(req.body.email);
 
         if (!user) return res.status(404).send('No user found.');
 

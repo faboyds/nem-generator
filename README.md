@@ -29,28 +29,28 @@ and you will be prompted with questions, allowing you to configure your project 
 
 ### Project Structure
 
-This project follows a ``Model - Service - Controller - Router`` structure. This is well explained in this [StackOverflow answer](https://stackoverflow.com/a/42164174/10326191) followed to design this solution.     
+This project follows a ``Model - Repository - Service - Controller`` structure. This implementation is inspired by this [StackOverflow answer](https://stackoverflow.com/a/42164174/10326191) (although it uses another terminology for the component names).     
 The generated project has the following files:
 
 ```bash
     .
     ├── app.js
     ├── bin
-    │   └── www
+    │   └── www
     ├── config
-    │   ├── config.js
-    │   ├── config.json
-    │   ├── mongod.conf
-    │   └── roles.js
+    │   ├── config.js
+    │   ├── config.json
+    │   ├── mongod.conf
+    │   └── roles.js
     ├── controllers
-    │   └── userController.js
+    │   ├── authorizeRole.js
+    │   ├── usersController.js
+    │   └── verifyToken.js
     ├── models
-    │   └── user.js
+    │   └── user.js
     ├── package.json
-    ├── routes
-    │   ├── authorizeRole.js
-    │   ├── usersRoute.js
-    │   └── verifyToken.js
+    ├── repositories
+    │   └── userRepository.js
     └── services
         └── userService.js
 ```

@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var cors = require('cors');
 require('./config/config');
 
-var usersRouter = require('./routes/usersRoute');
+var usersController = require('./controllers/usersController');
 
 
 var app = express();
@@ -32,7 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
-app.use('/users', usersRouter);
+app.use('/users', usersController);
 
 // error handler
 app.use(function (err, req, res) {
